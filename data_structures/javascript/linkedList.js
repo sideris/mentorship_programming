@@ -4,10 +4,38 @@
 // Once you are done with this you should create a double linked list. What's the benefit in that?
 // Other extension goals: Circular Linked List, Circular Double Linked list
 
+{
+  val: 1,
+  next: {
+    val: 2,
+    next: {
+      null
+    }
+  }
+}
+
+// TODO make recursive where possible *either use Node or LinkedList
 class Node {
   constructor(value) {
     this.value = value;
     this.next = null;
+  }
+
+  search(value) {
+    if (this.value === value) {
+      return this;
+    }
+    if (this.next) {
+      this.search(this.next);
+    }
+  }
+
+  add(value) {
+    if (!this.next) {
+      this.next = new Node(value);
+    } else {
+      this.add(this.next, value);
+    }
   }
 }
 
@@ -148,3 +176,7 @@ class SinglyLinkedList {
     return currentNode;
   }
 }
+
+const root = new Node(1);
+root.add(2);
+
